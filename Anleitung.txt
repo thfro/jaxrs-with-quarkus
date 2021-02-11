@@ -1,0 +1,13 @@
+
+Github: https://github.com/thfro/jaxrs-with-quarkus
+
+# Generieren des Quarkus Projektes
+mvn io.quarkus:quarkus-maven-plugin:1.11.2.Final:create -DprojectGroupId=nrw.it -DprojectArtifactId=persons -DclassName="nrw.it.products.api.PersonsResource" -Dpath="/persons"
+
+# Projekt in IDE öffnen
+# Anwendung starten
+./mvnw quarkus:dev
+
+# Abfrage der PersonsResource via HTTP GET
+curl -v http://localhost:8080/persons
+
