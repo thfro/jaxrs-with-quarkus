@@ -1,13 +1,28 @@
 
-Github: https://github.com/thfro/jaxrs-with-quarkus
-
 # Generieren des Quarkus Projektes
 mvn io.quarkus:quarkus-maven-plugin:1.11.2.Final:create -DprojectGroupId=nrw.it -DprojectArtifactId=persons -DclassName="nrw.it.products.api.PersonsResource" -Dpath="/persons"
 
-# Projekt in IDE öffnen
-# Anwendung starten
+# - Projekt in IDE öffnen
+# - Anwendung im Development Modus starten - Code-Änderungen wirken sich im laufenden Betrieb direkt aus!
 ./mvnw quarkus:dev
 
-# Abfrage der PersonsResource via HTTP GET
+# bei Problemen mit mvnw alternativ
+mvn quarkus:dev
+
+# Bauen und Starten eines Runnable JAR
+mvn package
+java -jar target/persons-1.0.0-SNAPSHOT-runner.jar
+
+
+
+# Abfrage aller Personen e via HTTP GET
 curl -v http://localhost:8080/persons
 
+# Suchen nach Nachname
+curl -v http:/localhost:8080/persons?lastname=XXX
+
+# Anlegen von Personen
+curl -v -X POST -d "{\"vorname\": \"Dagobert\", \"nachname\": \"Duck\", \"alter\": 80}" -H "Content-Type: application/json" http://localhost:8080/persons
+
+# Löschen von Personen
+curl -v -X DELETE http://localhost:8080/persons/2
