@@ -13,6 +13,22 @@ mvn quarkus:dev
 mvn package
 java -jar target/persons-1.0.0-SNAPSHOT-runner.jar
 
+------------------------
+Update von Personen mit PUT
+
+PUT http://localhost:8080/persons/{id}
+
+- Methode in PersonsResource für Update von Personen
+- @PUT
+- @Path Annotation, zum Übergeben der Personen-ID
+- in der Methode die aktualisierten Personendaten entgegennehmen
+- PersonService aufrufen (getById)
+- Person aktualisieren
+- Response zurück senden
+- mit curl testen
+
+curl -v -X PUT -d "{\"vorname\": \"Dagobert\", \"nachname\": \"Duck\", \"alter\": 80}" -H "Content-Type: application/json" http://localhost:8080/persons/3
+------------------------
 
 
 # Abfrage aller Personen e via HTTP GET
